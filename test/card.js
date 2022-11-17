@@ -1,23 +1,23 @@
 import React , { useState, useEffect}from 'react'
-import '../styles/cards.css'
-import TinderCard from 'react-tinder-card'
-import TinderIcon  from '../assets/tinder.png'
+import '../card.css'
+import Card from 'react-tinder-card'
+import Icon  from '../assets/icon.jpg'
 import axios from "./axios"
 
 
 
-export default function TinderCards() {
-const [people, setPeople] = useState([])
+export default function Cards() {
+const [product, setProduct] = useState([])
 
 useEffect(()=>{
     const fetchData = async () =>{
-        const req = await axios.get('/tindercards')
-        setPeople(req.data)
-        console.log(people)
+        const req = await axios.get('/card')
+        setProduct(req.data)
+        console.log(product)
            }
            fetchData()
     
-},[people.name])
+},[product.name])
 
 const swiped =(direction, nametodelete)=>{
     console.log( `removing ${nametodelete}`)
@@ -26,27 +26,27 @@ const swiped =(direction, nametodelete)=>{
 const outOfFrame =(name)=>{
     console.log( ` ${name}  left the screen`)
 }
-  return<div className='tinderCards'>
-    <div className="tinder_cards_container">        
+  return<div className='Cards'>
+    <div className="cards_container">        
     {
-            people.map((person)=>{
+            product.map((item)=>{
                
-                return <TinderCard
+                return <Card
                     className='swipe'
-                    key={person._id}
+                    key={item._id}
                     preventSwipe={["up", "down",]}
-                    onSwipe ={(dir)=>swiped(dir, person.name)}
-                    onCardLeftScreen={()=>outOfFrame(person.name)}
+                    onSwipe ={(dir)=>swiped(dir, item.name)}
+                    onCardLeftScreen={()=>outOfFrame(item.name)}
                     >
                         <div style={{
-                         backgroundImage: `url(${person.image})`,
+                         backgroundImage: `url(${item.image})`,
                         }}
                         className ='card'
                         >
-                            <h3>{person.name}</h3>
+                            <h3>{item.name}</h3>
                         </div>
                        
-                    </TinderCard>
+                    </Card>
              
                         
             })
