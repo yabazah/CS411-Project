@@ -28,7 +28,7 @@ dataebay = responseebay.json()
 def merge(dataamz, dataebay):
     new_data = []
     for item in dataamz:
-        avg_price = (item['app_sale_range']['min'] + item['app_sale_range']['max'])/2
+        avg_price = (float(item['app_sale_range']['min']) + float(item['app_sale_range']['max']))/2
         new_data.append({'name':item['deal_title'],'link':item['deal_details_url'],'image':item['deal_main_image_url'],'price':avg_price})
     for item in dataebay:
         if 'product_name' in item and 'price' in item and 'link' in item and 'image' in item:
