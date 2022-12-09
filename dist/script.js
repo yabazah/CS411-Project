@@ -50,112 +50,6 @@ const productDetails = [
     
   const cartDetails = [];
   
-// create function called likeItem, where once we click on the like button, it will be added to liked items and a new product will be displayed on the screen through swipe function.
-  function likeItem(event) {
-    let btnClicked = event.parentElement.parentElement.parentElement;
-    let name = btnClicked.getElementsByClassName("product-name")[0].innerText;
-    let price = parseFloat(
-    btnClicked.
-    getElementsByClassName("product-price")[0].
-    innerText.replace("₹ ", ""));
-
-    let imgSrc = btnClicked.getElementsByClassName("product-img")[0].src;
-    let likedItem = {
-      name,
-      price,
-      imgSrc,
-      qty: 1 };
-
-    let likedItems = document.getElementsByClassName("liked-items")[0];
-    let likedItemDiv = document.createElement("div");
-    likedItemDiv.classList.add("liked-item");
-    likedItemDiv.innerHTML = `
-    <div class="liked-item-img">
-      
-      
-      <img src="${likedItem.imgSrc}" alt="" />
-    </div>
-    <div class="liked-item-details">
-      
-      <div class="liked-item-name">${likedItem.name}</div>
-      <div class="liked-item-price">₹ ${likedItem.price}</div>
-    </div>
-    <div class="liked-item-btns">
-      <button class="btn btn-primary" onclick="addItem(this)">Add to cart</button>
-      <button class="btn btn-danger" onclick="removeLikedItem(this)">Remove</button>
-    </div>
-    `;
-    likedItems.appendChild(likedItemDiv);
-    btnClicked.remove();
-    swipe();
-  }
-
-  function removeLikedItem(event) {
-    event.parentElement.parentElement.remove();
-  }
-
-  function swipe() {
-    let products = document.getElementsByClassName("product");
-    let product = products[0];
-    product.classList.add("swipe");
-    product.addEventListener("animationend", function () {
-      product.remove();
-      product.classList.remove("swipe");
-      createProduct();
-    });
-  }
-
-  function createProduct() {
-    let products = document.getElementsByClassName("products")[0];
-    let product = document.createElement("div");
-    product.classList.add("product");
-    let randomProduct = productsData[Math.floor(Math.random() * 5)];
-    product.innerHTML = `
-    <div class="product-img">
-      <img src="${randomProduct.imageUrl}" alt="" />
-    </div>
-    <div class="product-details">
-      <div class="product-name">${randomProduct.name}</div>
-      <div class="product-price">₹ ${randomProduct.price}</div>
-      <div class="product-qty">Qty: ${randomProduct.qty}</div>
-      <div class="product-heading">${randomProduct.heading}</div>
-      <div class="product-des">${randomProduct.des}</div>
-    </div>
-    <div class="product-btns">
-      <button class="btn btn-primary" onclick="likeItem(this)">Like</button>
-      <button class="btn btn-danger" onclick="addItem(this)">Add to cart</button>
-    </div>
-    `;
-    products.appendChild(product);
-  } 
-
-  // create function called dislikeItem, where once we click on the dislike button, it will be added to an array called dislikedItems
-  // and a new product will be displayed on the screen through swipe function.
-
-  function dislikeItem(event) {
-    let btnClicked = event.parentElement.parentElement.parentElement;
-    let name = btnClicked.getElementsByClassName("product-name")[0].innerText;
-    let price = parseFloat(
-    btnClicked.
-    getElementsByClassName("product-price")[0].
-    innerText.replace("₹ ", ""));
-    let imgSrc = btnClicked.getElementsByClassName("product-img")[0].src;
-    let dislikedItem = {
-      name,
-      price,
-      imgSrc,
-      qty: 1 };
-
-    // add the disliked item to the array called dislikedArray
-    dislikedItems.push(dislikedItem);
-    btnClicked.remove();
-    swipe();
-
-  }
-
-
-
-
   
   function addItem(event) {
     let btnClicked =
@@ -340,10 +234,10 @@ const productDetails = [
   
   
           <div class="footer">
-            <button onclick='swipeDislike()' class='rate'><i class='delete'></i></button>
-            <button onclick='swipeLike()' class='rate'><i class='like'></i></button>
-    
-          </div>
+          
+          <button class='rate' onclick='swipeDislike()'></button>
+          <button class='rate' onclick='swipeLike()'></button>
+        </div>
           
       </div>
       
@@ -383,17 +277,6 @@ const productDetails = [
       <div class='wrapper'>
       <h5>${heading}</h5>
       <p>${des}</p>
-      </div>
-      <br/><br/><br/><br/><br/><br/>
-      <div class="footer">
-          
-          <span class='btn-rate'>
-            <div>
-              
-              <button onclick='dislikeItem(this)' class='rate'>dislike <i class='rate-btn'></i></button>
-              <button onclick='likeItem(this)' class='rate'>like <i class='rate-btn2'></i></button>
-            </div>
-          </span>
       </div>
       <div class='purchase'>
       <p class='product-price'>₹ 
@@ -626,7 +509,7 @@ const productDetails = [
   
   function addNewProfile() {
     var newindex = Math.floor(Math.random() * 5);
-    return DisplayProducts(newindex);
+    DisplayProducts(newindex);
     // swipe();
   }
   
