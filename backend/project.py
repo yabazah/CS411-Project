@@ -25,19 +25,35 @@ responseebay = requests.request("GET", urlebay, headers=headers)
 
 dataebay = responseebay.json()
 
+def merge(dataamz, dataebay):
+    new_data = []
+    for item in dataamz:
+        avg_price = (item['app_sale_range']['min'] + item['app_sale_range']['max'])/2
+        new_data.append({'name':item['deal_title'],'link':item['deal_details_url'],'image':item['deal_main_image_url'],'price':avg_price})
+    for item in dataebay:
+        if 'product_name' in item and 'price' in item and 'link' in item and 'image' in item:
+            new_data.append({'name':item['product_name'],'link':item['link'],'image':item['image'],'price':item['price']})
+    return new_data
 
 "counts for number of items"
-def count(dataamz):
+def count(data):
     counter = 0 
-    for x in dataamz: 
+    for x in data: 
         counter += 1 
     return counter
 "return random selection from data group"
-def randomselect(dataamz): 
-   return random.randint(0,count(dataamz)-1)
+def randomselect(data): 
+   return random.randint(0,count(data)-1)
 
-print(dataebay[randomselect(dataebay)]['link'])
-
-"print(data[1]['deal_title'])"
+def related_items(name, data):
+    key_words = name.split()
+    new_data = []
+    for item in data:
+        if name != item['name']:
+            for key in key_words:
+                if key in item['name']:
+                    new_data.append(item)
+                    break
+    return new_data
 
 
