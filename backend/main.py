@@ -19,7 +19,5 @@ def upload(db,username,password,item,name):
     doc_ref = db.collection(username).document(password)
     doc_ref.set({u'item':item , u'name':name})
 
-upload(db,u'6666999',u'1234',[88,"gun"],u'harry')
-
 
 
