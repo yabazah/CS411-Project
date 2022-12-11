@@ -32,7 +32,7 @@ def merge(dataamz, dataebay):
         new_data.append({'name':item['deal_title'],'link':item['deal_details_url'],'image':item['deal_main_image_url'],'price':avg_price})
     for item in dataebay:
         if 'product_name' in item and 'price' in item and 'link' in item and 'image' in item:
-            new_data.append({'name':item['product_name'],'link':item['link'],'image':item['image'],'price':item['price']})
+            new_data.append({'name':item['product_name'],'link':item['link'],'image':item['image'],'price':float(item['price'])})
     return new_data
 
 "counts for number of items"
