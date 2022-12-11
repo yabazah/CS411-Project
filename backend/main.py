@@ -15,9 +15,9 @@ try:
 except google.cloud.exceptions.NotFound:
     print(u'Missing data')
     
-def upload(db,username,password,item,name):
+def upload(db,username,password,email,item,name):
     doc_ref = db.collection(username).document(password)
-    doc_ref.set({u'item':item , u'name':name})
+    doc_ref.set({u'email':email , u'item':item , u'name':name})
 
 
 
