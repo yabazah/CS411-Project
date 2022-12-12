@@ -4,7 +4,7 @@ import random
 urlamz = "https://amazon24.p.rapidapi.com/api/todaydeals"
 
 headers = {
-	"X-RapidAPI-Key": "f35142ac0emshdb77d77b6e2a12dp1419fcjsncf9fc6296c95",
+	"X-RapidAPI-Key": "-------",
 	"X-RapidAPI-Host": "amazon24.p.rapidapi.com"
 }
 
@@ -17,7 +17,7 @@ dataamz = tempamz.get("deal_docs")
 urlebay = "https://ebay-data-scraper.p.rapidapi.com/deals/home"
 
 headers = {
-	"X-RapidAPI-Key": "f35142ac0emshdb77d77b6e2a12dp1419fcjsncf9fc6296c95",
+	"X-RapidAPI-Key": "--------",
 	"X-RapidAPI-Host": "ebay-data-scraper.p.rapidapi.com"
 }
 
